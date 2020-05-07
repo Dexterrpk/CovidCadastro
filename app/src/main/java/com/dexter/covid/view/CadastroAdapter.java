@@ -70,7 +70,7 @@ public class CadastroAdapter extends RecyclerView.Adapter<CadastroAdapter.MyView
         try {
             SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = fmt.parse(dateStr);
-            SimpleDateFormat fmtOut = new SimpleDateFormat("MMM d");
+            SimpleDateFormat fmtOut = new SimpleDateFormat("HH:mm dd MMM  ");
             return fmtOut.format(date);
         } catch (ParseException e) {
 
