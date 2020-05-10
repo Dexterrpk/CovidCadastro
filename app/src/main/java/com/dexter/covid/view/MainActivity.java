@@ -80,68 +80,45 @@ public class MainActivity extends AppCompatActivity {
         }));
     }
 
-    /**
-     * Inserting new note in db
-     * and refreshing the list
-     */
+
     private void createNote(String note) {
-        // inserting note in db and getting
-        // newly inserted note id
+
         long id = db.insertCadastro(note);
 
-        // get the newly inserted note from db
         Note n = db.getNote(id);
 
         if (n != null) {
-            // adding new note to array list at 0 position
             notesList.add(0, n);
 
-            // refreshing the list
             mAdapter.notifyDataSetChanged();
 
             listavaziaView();
         }
     }
 
-    /**
-     * Updating note in db and updating
-     * item in the list by its position
-     */
+
     private void updateNote(String note, int position) {
         Note n = notesList.get(position);
-        // updating note text
         n.setCadastro(note);
 
-        // updating note in db
         db.updateNote(n);
 
-        // refreshing the list
         notesList.set(position, n);
         mAdapter.notifyItemChanged(position);
 
         listavaziaView();
     }
 
-    /**
-     * Deleting note from SQLite and removing the
-     * item from the list by its position
-     */
+
     private void deleteCadastro(int position) {
-        // excluir cadastro db
         db.deleteNote(notesList.get(position));
 
-        // removing the note from the list
         notesList.remove(position);
         mAdapter.notifyItemRemoved(position);
 
         listavaziaView();
     }
 
-    /**
-     * Opens dialog with Edit - Delete options
-     * Edit - 0
-     * Delete - 0
-     */
     private void showActionsDialog(final int position) {
         CharSequence colors[] = new CharSequence[]{"Editar", "Excluir"};
 
@@ -195,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show toast message when no text is entered
                 if (TextUtils.isEmpty(inputNote.getText().toString())) {
                     Toast.makeText(MainActivity.this, "Cadatre um CPF!", Toast.LENGTH_SHORT).show();
                     return;

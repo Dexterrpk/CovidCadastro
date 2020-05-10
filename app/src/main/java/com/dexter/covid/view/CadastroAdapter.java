@@ -53,10 +53,8 @@ public class CadastroAdapter extends RecyclerView.Adapter<CadastroAdapter.MyView
 
         holder.cadastro.setText(note.getCadastro());
 
-        // Displaying dot from HTML character code
         holder.dot.setText(Html.fromHtml("&#8226;"));
 
-        // Formatting and displaying timestamp
         holder.timestamp.setText(formatDate(note.getTimestamp()));
     }
 

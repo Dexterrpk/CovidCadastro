@@ -13,10 +13,8 @@ import com.dexter.covid.database.model.Note;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    // Database Version
     private static final int DATABASE_VERSION = 1;
 
-    // Database Name
     private static final String DATABASE_NAME = "cadatro_db";
 
 
@@ -24,15 +22,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Create Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        // create cadastros table
         db.execSQL(Note.CREATE_TABLE);
     }
 
-    // atualizar database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + Note.TABLE_NAME);
@@ -44,18 +39,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(Note.COLUMN_NOTE, cadastro);
 
-        // insert row
         long id = db.insert(Note.TABLE_NAME, null, values);
 
-        // close db connection
         db.close();
 
-        // return newly inserted row id
         return id;
     }
 
     public Note getNote(long id) {
-        // get readable database as we are not inserting anything
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Note.TABLE_NAME,
@@ -66,13 +57,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        // prepare note object
         Note note = new Note(
                 cursor.getInt(cursor.getColumnIndex(Note.COLUMN_ID)),
                 cursor.getString(cursor.getColumnIndex(Note.COLUMN_NOTE)),
                 cursor.getString(cursor.getColumnIndex(Note.COLUMN_TIMESTAMP)));
 
-        // close the db connection
         cursor.close();
 
         return note;
@@ -81,14 +70,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Note> getAllNotes() {
         List<Note> notes = new ArrayList<>();
 
-        // Select All Query
         String selectQuery = "SELECT  * FROM " + Note.TABLE_NAME + " ORDER BY " +
                 Note.COLUMN_TIMESTAMP + " DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 Note note = new Note();
@@ -100,10 +87,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        // close db connection
         db.close();
 
-        // return notes list
         return notes;
     }
 
@@ -116,7 +101,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
 
-        // return count
         return count;
     }
 
@@ -126,7 +110,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(Note.COLUMN_NOTE, note.getCadastro());
 
-        // updating row
         return db.update(Note.TABLE_NAME, values, Note.COLUMN_ID + " = ?",
                 new String[]{String.valueOf(note.getId())});
     }
