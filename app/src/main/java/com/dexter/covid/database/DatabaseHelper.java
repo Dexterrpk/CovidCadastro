@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME = "cadatro_db";
+    private static final String DATABASE_NAME = "note_db";
 
 
     public DatabaseHelper(Context context) {
@@ -34,10 +34,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertCadastro(String cadastro) {
+    public long insertNote(String note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Note.COLUMN_NOTE, cadastro);
+        values.put(Note.COLUMN_NOTE, note);
 
         long id = db.insert(Note.TABLE_NAME, null, values);
 
@@ -104,14 +104,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public int updateNote(Note note) {
+    public int updateNote(Note cadastro) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Note.COLUMN_NOTE, note.getCadastro());
+        values.put(Note.COLUMN_NOTE, cadastro.getCadastro());
 
         return db.update(Note.TABLE_NAME, values, Note.COLUMN_ID + " = ?",
-                new String[]{String.valueOf(note.getId())});
+                new String[]{String.valueOf(cadastro.getId())});
     }
 
     public void deleteNote(Note note) {

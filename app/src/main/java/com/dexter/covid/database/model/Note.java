@@ -4,11 +4,11 @@ public class Note {
     public static final String TABLE_NAME = "notes";
 
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NOTE = "cadastro";
+    public static final String COLUMN_NOTE = "note";
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
-    private String cadastro;
+    private String note;
     private String timestamp;
 
 
@@ -23,9 +23,9 @@ public class Note {
     public Note() {
     }
 
-    public Note(int id, String cadastro, String timestamp) {
+    public Note(int id, String note, String timestamp) {
         this.id = id;
-        this.cadastro = cadastro;
+        this.note = note;
         this.timestamp = timestamp;
     }
 
@@ -34,11 +34,11 @@ public class Note {
     }
 
     public String getCadastro() {
-        return cadastro;
+        return note;
     }
 
     public void setCadastro(String cadastro) {
-        this.cadastro = cadastro;
+        this.note = cadastro;
     }
 
     public String getTimestamp() {

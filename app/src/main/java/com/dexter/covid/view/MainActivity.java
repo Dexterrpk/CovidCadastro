@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNote(String note) {
 
-        long id = db.insertCadastro(note);
+        long id = db.insertNote(note);
 
         Note n = db.getNote(id);
 
