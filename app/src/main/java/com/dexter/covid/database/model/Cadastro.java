@@ -1,14 +1,14 @@
 package com.dexter.covid.database.model;
 
-public class Note {
-    public static final String TABLE_NAME = "notes";
+public class Cadastro {
+    public static final String TABLE_NAME = "cadastro";
 
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NOTE = "note";
+    public static final String COLUMN_CPF = "cpf";
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
-    private String note;
+    private String cpf;
     private String timestamp;
 
 
@@ -16,17 +16,17 @@ public class Note {
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_NOTE + " TEXT,"
+                    + COLUMN_CPF + " TEXT,"
                     + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
                     + ")";
 
-    public Note() {
+    public Cadastro() {
     }
 
-    public Note(int id, String note, String timestamp) {
+    public Cadastro(int id, String cpf, String timestamp) {
         this.id = id;
-        this.note = note;
-        this.timestamp = timestamp;
+        this.cpf = cpf;
+        this.timestamp = timestamp ;
     }
 
     public int getId() {
@@ -34,11 +34,11 @@ public class Note {
     }
 
     public String getCadastro() {
-        return note;
+        return cpf;
     }
 
     public void setCadastro(String cadastro) {
-        this.note = cadastro;
+        this.cpf = cadastro;
     }
 
     public String getTimestamp() {

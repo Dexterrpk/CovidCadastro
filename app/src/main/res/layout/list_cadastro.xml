@@ -25,11 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/dot"
-        android:textColor="@color/timestamp"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="@dimen/timestamp" />
 
     <TextView
-        android:id="@+id/note"
+        android:id="@+id/cpf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/timestamp"
